@@ -41,6 +41,18 @@ socketio.listen(server).on('connection', function (socket) {
         })
     })
 
+    socket.on('reqCards', function(category) {
+        pool.getConnection(function(err, connection){
+            if (err) throw err;
+            connection.query(`SELECT * FROM HuiJia_Submissions WHERE category='${category}' AND approved=1`, function (err, result) {
+                if (err) throw err;
+                socket.emit('recCards', result);
+                console.log(`${result.length} recCards emitted!`);
+                connection.release();
+            });
+        });
+    });
+
     socket.on('disconnect', function(){
         console.log(`Socket: ${socket} disconnected.`);
     })
