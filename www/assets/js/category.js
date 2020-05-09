@@ -65,14 +65,14 @@ $( document ).ready(function() {
                 description.setAttribute('class', 'card-description');
                 description.innerHTML = DBCards[i].description;
 
+                var id = DBCards[i].id;
+                overlay.addEventListener("click", function(){window.open(`../card.html?query=${id}`)});
+
                 if (DBCards[i].url != "NIL") {
                     var url = DBCards[i].url;
                     if (/http\/\//.test(URL) == false && /https\/\//.test(URL) == false){
                         url = `https://${url}`;
                     };
-                    overlay.addEventListener("click", function(){window.open(url)});
-                } else {
-                    overlay.style.cursor = 'default';
                 }
 
                 cardContainer.appendChild(cards[i]);

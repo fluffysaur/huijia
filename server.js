@@ -53,19 +53,22 @@ socketio.listen(server).on('connection', function (socket) {
         });
     });
 
-    socket.on('reqCard', function(query) {
+    socket.on('getCard', function(query) {
         pool.getConnection(function(err, connection){
             if (err) throw err;
-            if (query = "random"){
-                connection.query(`SELECT * FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
-                    if (err) throw err;
-                    socket.emit('recCard', result[rollDice(0, result.length)]);
-                    connection.release();
-                });
-            } else {
+            if (isNaN(query) == false){ // if there is a query and it is a number (id)
                 connection.query(`SELECT * FROM HuiJia_Submissions WHERE id=${query}`, function(err, result) {
                     if (err) throw err;
-                    socket.emit('recCard', result);
+                    console.log(`Retrieving card ${query} from name ${result[0].name}...`)
+                    socket.emit('recCard', result[0]);
+                    connection.release();
+                });
+            } else { // Random
+                connection.query(`SELECT * FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
+                    if (err) throw err;
+                    console.log(`Retrieving random card...`)
+                    var randInt = rollDice(0, result.length-1);
+                    socket.emit('recCard', result[randInt]);
                     connection.release();
                 });
             }
