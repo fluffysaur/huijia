@@ -30,7 +30,7 @@ socketio.listen(server).on('connection', function (socket) {
         // Submission Code Here
         pool.getConnection(function(err, connection){
             if (err) throw err;
-            connection.query(`INSERT INTO HuiJia_Submissions (name, category, idea, description, url) VALUES ('${entry.name}', '${entry.cat}', '${entry.idea}', '${entry.desc}', '${entry.url}')`, function (err, result) {
+            connection.query(`INSERT INTO HuiJia_Submissions (name, category, idea, description, imageurl, url) VALUES ('${entry.name}', '${entry.cat}', '${entry.idea}', '${entry.desc}', '${entry.imageurl}', '${entry.url}')`, function (err, result) {
                 if (err) {
                     socket.emit('submitFail');
                     throw err;

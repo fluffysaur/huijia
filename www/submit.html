@@ -61,9 +61,10 @@
     	<div class="row justify-content-center">
     		<div class="col-md-7">
     			<article class="card">
-    			<img class="card-img-top mb-2" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e0245bb4e87077312cc3d102e68c1efd&auto=format&fit=crop&w=735&q=80" alt="Card image">
+    			<img class="card-img-top" src="https://images.unsplash.com/photo-1533258439784-28006397342d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" alt="Card image">
     			<div class="card-body">
-					<h1 class="card-title display-4">Submit Your Idea!</h1>
+					<h1 class="card-title display-4" style="color: black; margin: 2px 0px">
+						Submit Your Idea!</h1>
 					
 					<form id="ideaForm" action="#" onsubmit="return false">
 						<div class="form-group">
@@ -111,6 +112,11 @@
 							<label for="inputURL">URL</label>
 							<input type="text" class="form-control" id="inputURL" aria-describedby="URLHelp" maxlength="3000">
 							<small id="URLHelp" class="form-text text-muted">If any. Otherwise, leave this blank.</small>
+						</div>
+						<div class="form-group">
+							<label for="imgURL">Image URL</label>
+							<input type="text" class="form-control" id="imgURL" aria-describedby="URLHelp" maxlength="3000">
+							<small id="URLHelp" class="form-text text-muted">Link to an image if any. Otherwise, leave this blank.</small>
 						</div>
 						<button class="btn btn-primary btn-gray200" id="submitBtn" type="submit">Submit</button>
 					</form>

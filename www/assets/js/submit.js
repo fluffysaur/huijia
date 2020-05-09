@@ -8,6 +8,7 @@ const nameField = document.getElementById('inputName')
 , descField = document.getElementById('inputDescription')
 , charCount = document.getElementById('charCount')
 , urlField = document.getElementById('inputURL')
+, imgField = document.getElementById('imgURL')
 , submitBtn = document.getElementById('submitBtn')
 , ideaForm = document.getElementById('ideaForm');
 
@@ -26,11 +27,18 @@ $( document ).ready(function() {
                 }
                 var inputURL = urlField.value;
                 if (urlField.value == null || urlField.value == '') inputURL = "NIL";
+                var inputImg = imgField.value;
+                if (imgField.value == null || imgField.value == '') inputImg = "NIL";
+                var cate = catField.value;
+                if (cate == "Math & Science") cate = "Mathsci";
+                if (cate == "Cooking & Baking") cate = "Cooking";
+                if (cate == "Movies & Shows") cate = "Movies";
                 var entry = {
                     name : sqlTextConv(nameField.value, 'singleline'),
-                    cat : catField.value,
+                    cat : cate,
                     idea : sqlTextConv(ideaField.value, 'singleline'),
                     desc : sqlTextConv(descField.value, 'multiline'),
+                    imageurl : sqlTextConv(inputImg, 'singleline'),
                     url : sqlTextConv(inputURL, 'singleline')
                 }
                 if (entry.name == null || entry.name == '') entry.name = "Anonymous";
