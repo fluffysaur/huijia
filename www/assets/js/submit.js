@@ -33,6 +33,7 @@ $( document ).ready(function() {
                 if (cate == "Math & Science") cate = "Mathsci";
                 if (cate == "Cooking & Baking") cate = "Cooking";
                 if (cate == "Movies & Shows") cate = "Movies";
+                if (cate == "DIY & Home Improvement") cate = "DIY";
                 var entry = {
                     name : sqlTextConv(nameField.value, 'singleline'),
                     cat : cate,
