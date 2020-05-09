@@ -9,7 +9,12 @@ cardTitle = document.getElementById('idea-name'),
 cardName = document.getElementById('cardName'),
 description = document.getElementById('description'),
 hiddenUrl = document.getElementsByClassName('hide')[0],
-cardCategory = document.getElementById('cardCategory');
+cardCategory = document.getElementById('cardCategory'),
+upvoteBtn = document.getElementById('upvotes'),
+upvoteNumber = document.getElementById('number'),
+views = document.getElementById('number-of-views'),
+cardId = query,
+upvoted = false;
 
 var images = {
     Games : "https://66.media.tumblr.com/5c759e49bc792499a41f8acc1e02d47d/tumblr_pnk8roipcC1v5jdoy_540.jpg",
@@ -38,6 +43,10 @@ $( document ).ready(function() {
             cardName.innerHTML = `Submitted by: ${entry.name}`;
             description.innerHTML = entry.description;
             cardCategory.innerHTML = `Category: ${entry.category}`;
+            upvoteNumber.innerHTML = entry.upvotes;
+            console.log(upvoteBtn);
+            views.innerHTML = `Number of views: ${entry.views}`;
+            cardId = entry.id;
 
             if (entry.imageurl != "NIL" && entry.imageurl != "") {
                 var url = entry.imageurl;
@@ -72,15 +81,33 @@ $( document ).ready(function() {
                 extURLButton.setAttribute("rel", "noopener noreferrer");
                 extURLButton.innerText = "Visit Website ";
 
-                var idk = document.createElement("i");
-                idk.setAttribute("class", "fa fa-external-link");
+                var extURLIcon = document.createElement("i");
+                extURLIcon.setAttribute("class", "fa fa-external-link");
 
-                extURLButton.appendChild(idk);
+                extURLButton.appendChild(extURLIcon);
                 extURL.appendChild(extURLButton);
                 displayBlock.appendChild(extURL);
             }
 
             console.log(`Entry printed!`);
+        });
+
+        upvoteBtn.addEventListener("click", function(){ 
+            if (!upvoted) {
+                iosocket.emit('upvote', cardId);
+                upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) + 1;
+                upvotes.children[1].setAttribute("class", "bi bi-caret-up hide");
+                upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill");
+                upvoted = true;
+                console.log(`upvoted ${cardId}`);
+            } else {
+                iosocket.emit('unupvote', cardId);
+                upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) - 1;
+                upvotes.children[1].setAttribute("class", "bi bi-caret-up");
+                upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill hide");
+                upvoted = false;
+                console.log(`un-upvoted ${cardId}`);
+            } 
         });
 
         iosocket.on('disconnect', function() {

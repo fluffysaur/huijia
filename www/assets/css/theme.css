@@ -156,7 +156,7 @@ footer.footer {
 }
 
 .hide {
-  visibility: hidden;
+  display: none;
 }
 
 .fa-arrow-circle-o-right {
