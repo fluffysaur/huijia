@@ -59,7 +59,7 @@ socketio.listen(server).on('connection', function (socket) {
             if (query = "random"){
                 connection.query(`SELECT * FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
                     if (err) throw err;
-                    socket.emit('recCard', result[rollDice(0, result.length)]);
+                    socket.emit('recCard', result[rollDice(0, result.length - 1)]);
                     connection.release();
                 });
             } else {
