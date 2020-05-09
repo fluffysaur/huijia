@@ -67,8 +67,6 @@ $( document ).ready(function() {
                 cards[i].appendChild(img);
                 cards[i].appendChild(overlay);
 
-                
-
                 console.log(`Entry ${i} printed!`);
             }
         });
