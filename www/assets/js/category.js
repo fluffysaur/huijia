@@ -16,6 +16,8 @@ console.log(paramType);
 
 // pageTitle.innerHTML = pageName;
 
+var overlays = document.getElementsByClassName("overlay");
+var cardID = [];
 var cards = [];
 var images = {
     games : "https://images.unsplash.com/photo-1518918015065-2daef8f1ec30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
@@ -50,8 +52,11 @@ $( document ).ready(function() {
                 img.setAttribute('src', images[pageName]);
                 img.setAttribute('alt', 'Card Image');
 
-                var overlay = document.createElement("div");
+                overlay = document.createElement("div");
+                overlay.setAttribute('id', `${DBCards.id}`);
                 overlay.setAttribute('class', 'overlay');
+                overlay.setAttribute('onclick', `document.location='../card.html?query=${DBCards[i].id}'`);
+                console.log(`document.location='../card.html?query=${DBCards[i].id}'`)
 
                 var title = document.createElement("h2");
                 title.setAttribute('class', 'card-title title');
@@ -64,16 +69,6 @@ $( document ).ready(function() {
                 var description = document.createElement("p");
                 description.setAttribute('class', 'card-description');
                 description.innerHTML = DBCards[i].description;
-
-                var id = DBCards[i].id;
-                overlay.addEventListener("click", function(){window.open(`../card.html?query=${id}`,"_self")});
-
-                if (DBCards[i].url != "NIL") {
-                    var url = DBCards[i].url;
-                    if (/http\/\//.test(URL) == false && /https\/\//.test(URL) == false){
-                        url = `https://${url}`;
-                    };
-                }
 
                 cardContainer.appendChild(cards[i]);
                 overlay.appendChild(title);

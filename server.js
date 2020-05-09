@@ -56,7 +56,7 @@ socketio.listen(server).on('connection', function (socket) {
     socket.on('getCard', function(query) {
         pool.getConnection(function(err, connection){
             if (err) throw err;
-            if (isNaN(query) == false){ // if there is a query and it is a number (id)
+            if (isNaN(query) == false && query != ''){ // if there is a query and it is a number (id)
                 connection.query(`SELECT * FROM HuiJia_Submissions WHERE id=${query}`, function(err, result) {
                     if (err) throw err;
                     console.log(`Retrieving card ${query} from name ${result[0].name}...`)
