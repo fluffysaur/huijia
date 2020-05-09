@@ -45,7 +45,6 @@ var catRetriever = {
     fashion : 'Fashion',
     wellness : 'Wellness',
     others : 'Others'
-
 }
 
 $( document ).ready(function() {
@@ -59,7 +58,6 @@ $( document ).ready(function() {
             document.querySelectorAll('.card').forEach(function(ent) {
                 ent.remove();
             })
-            cardContainer.innerHTML = ``;
 
             for (i=DBCards.length-1; i>=0; i--) {
                 cards[i] = document.createElement("div");
