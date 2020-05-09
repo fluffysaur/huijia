@@ -2,6 +2,11 @@
 
 const iosocket = io.connect();
 
+var path = window.location.pathname;
+var page = path.split("/").pop();
+var pageName = page.replace('.html', '');
+console.log(pageName);
+
 const cardContainer = document.getElementById("cardContainer");
 var cards = [];
 var images = {
@@ -14,7 +19,7 @@ $( document ).ready(function() {
     iosocket.on('connect', function() {
         console.log("Yo.........connected!");
 
-        iosocket.emit('reqCards', 'games');
+        iosocket.emit('reqCards', pageName);
 
         iosocket.on('recCards', function(DBCards) {
             document.querySelectorAll('.card').forEach(function(ent) {
@@ -29,7 +34,7 @@ $( document ).ready(function() {
 
                 var img = document.createElement("img");
                 img.setAttribute('class', 'card-img');
-                img.setAttribute('src', images.games);
+                img.setAttribute('src', images[pageName]);
                 img.setAttribute('alt', 'Card Image');
 
                 var overlay = document.createElement("div");
