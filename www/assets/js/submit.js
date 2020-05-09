@@ -19,27 +19,29 @@ $( document ).ready(function() {
     
         iosocket.emit("reqCards");
 
-        ideaForm.addEventListener("submit", function(ev){
-            var inputURL = urlField.value;
-            if (urlField.value == null || urlField.value == '') inputURL = "NIL";
-            var inputImg = imgField.value;
-            if (imgField.value == null || imgField.value == '') inputImg = "NIL";
-            var cate = catField.value;
-            if (cate == "Maths & Science") cate = "Mathsci";
-            if (cate == "Cooking & Baking") cate = "Cooking";
-            if (cate == "Movies & Shows") cate = "Movies";
-            if (cate == "DIY & Home Improvement") cate = "DIY";
-            var entry = {
-                name : sqlTextConv(nameField.value, 'singleline'),
-                cat : cate,
-                idea : sqlTextConv(ideaField.value, 'singleline'),
-                desc : sqlTextConv(descField.value, 'multiline'),
-                imageurl : sqlTextConv(inputImg, 'singleline'),
-                url : sqlTextConv(inputURL, 'singleline')
+        submitBtn.addEventListener("click", function(ev){
+            if (catField.value && ideaField.value && descField.value) {
+                var inputURL = urlField.value;
+                if (urlField.value == null || urlField.value == '') inputURL = "NIL";
+                var inputImg = imgField.value;
+                if (imgField.value == null || imgField.value == '') inputImg = "NIL";
+                var cate = catField.value;
+                if (cate == "Maths & Science") cate = "Mathsci";
+                if (cate == "Cooking & Baking") cate = "Cooking";
+                if (cate == "Movies & Shows") cate = "Movies";
+                if (cate == "DIY & Home Improvement") cate = "DIY";
+                var entry = {
+                    name : sqlTextConv(nameField.value, 'singleline'),
+                    cat : cate,
+                    idea : sqlTextConv(ideaField.value, 'singleline'),
+                    desc : sqlTextConv(descField.value, 'multiline'),
+                    imageurl : sqlTextConv(inputImg, 'singleline'),
+                    url : sqlTextConv(inputURL, 'singleline')
+                }
+                if (entry.name == null || entry.name == '') entry.name = "Anonymous";
+                iosocket.emit("submitidea", entry);
+                return false;
             }
-            if (entry.name == null || entry.name == '') entry.name = "Anonymous";
-            iosocket.emit("submitidea", entry);
-            return false;
         });
 
         iosocket.on("submitFail", () => {
