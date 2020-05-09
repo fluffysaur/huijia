@@ -170,6 +170,11 @@ footer.footer {
   font-size: 25px;
   font-family: 'Rubik', sans-serif;
   margin: 10px 30px 10px 10px;
+  cursor: pointer
+}
+
+.brand-icon {
+  cursor: pointer
 }
 
 .d-flex {
