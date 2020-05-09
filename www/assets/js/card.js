@@ -12,9 +12,8 @@ hiddenUrl = document.getElementsByClassName('hide')[0],
 cardCategory = document.getElementById('cardCategory'),
 upvoteBtn = document.getElementById('upvotes'),
 upvoteNumber = document.getElementById('number'),
-views = document.getElementById('number-of-views'),
-cardId = query,
-upvoted = false;
+views = document.getElementById('number-of-views');
+// upvoted = false;
 
 var images = {
     Games : "https://66.media.tumblr.com/5c759e49bc792499a41f8acc1e02d47d/tumblr_pnk8roipcC1v5jdoy_540.jpg",
@@ -46,7 +45,6 @@ $( document ).ready(function() {
             upvoteNumber.innerHTML = entry.upvotes;
             console.log(upvoteBtn);
             views.innerHTML = `Number of views: ${entry.views}`;
-            cardId = entry.id;
 
             if (entry.imageurl != "NIL" && entry.imageurl != "") {
                 var url = entry.imageurl;
@@ -92,23 +90,41 @@ $( document ).ready(function() {
             console.log(`Entry printed!`);
         });
 
-        upvoteBtn.addEventListener("click", function(){ 
-            if (!upvoted) {
-                iosocket.emit('upvote', cardId);
-                upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) + 1;
-                upvotes.children[1].setAttribute("class", "bi bi-caret-up hide");
-                upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill");
-                upvoted = true;
-                console.log(`upvoted ${cardId}`);
+        upvoteBtn.addEventListener("click", function(){
+            if (typeof(Storage) !== "undefined") { 
+                if (localStorage.getItem(query) == "false") {
+                    iosocket.emit('upvote', query);
+                    upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) + 1;
+                    upvotes.children[1].setAttribute("class", "bi bi-caret-up hide");
+                    upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill");
+                    console.log(`upvoted ${query}`);
+                    localStorage.setItem(query, "true");
+                } else {
+                    iosocket.emit('unupvote', query);
+                    upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) - 1;
+                    upvotes.children[1].setAttribute("class", "bi bi-caret-up");
+                    upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill hide");
+                    console.log(`un-upvoted ${query}`);
+                    localStorage.setItem(query, "false");
+                }
             } else {
-                iosocket.emit('unupvote', cardId);
-                upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) - 1;
-                upvotes.children[1].setAttribute("class", "bi bi-caret-up");
-                upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill hide");
-                upvoted = false;
-                console.log(`un-upvoted ${cardId}`);
-            } 
+                alert("Your browser does not support this feature, sorry. We recommend Google Chrome.");
+            }
         });
+
+        function upvoteInit() {
+            if (typeof(Storage) !== "undefined") {
+                if (localStorage.getItem(query) == undefined) {
+                    localStorage.setItem(query, "false");
+                }
+                if (localStorage.getItem(query) == "true") {
+                    upvotes.children[1].setAttribute("class", "bi bi-caret-up hide");
+                    upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill");
+                }
+            }
+        }
+
+        upvoteInit();
 
         iosocket.on('disconnect', function() {
             console.log("Disconnected");
