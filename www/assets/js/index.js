@@ -13,7 +13,7 @@ $( document ).ready(function() {
     var othersCard = document.getElementById("otherscard");
     var fashionCard = document.getElementById("fashioncard");
     var moviesCard = document.getElementById("moviescard");
-    var natureCard = document.getElementById("naturecard");
+    var readingCard = document.getElementById("readingcard");
     var wellnessCard = document.getElementById("wellnesscard");
 
     gamesCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
@@ -26,7 +26,7 @@ $( document ).ready(function() {
     othersCard.addEventListener("click", function(){window.location.href = 'categories/others.html'});
     fashionCard.addEventListener("click", function(){window.location.href = 'categories/fashion.html'});
     moviesCard.addEventListener("click", function(){window.location.href = 'categories/movies.html'});
-    natureCard.addEventListener("click", function(){window.location.href = 'categories/nature.html'});
+    readingCard.addEventListener("click", function(){window.location.href = 'categories/reading.html'});
     wellnessCard.addEventListener("click", function(){window.location.href = 'categories/wellness.html'});
 
     iosocket.on('connect', function () {
