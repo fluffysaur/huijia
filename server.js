@@ -26,6 +26,20 @@ server.listen(port, function(){
 socketio.listen(server).on('connection', function (socket) {
     console.log(`Got a connection on socket: ${socket}.`);
 
+    socket.on('upvote', function(id) {
+        pool.getConnection(function(err, connection) {
+            if (err) throw err;
+            connection.query(`UPDATE HuiJia_Submissions SET upvotes=upvotes+1 WHERE id=${targetID}`, function(err, result) {
+                if (err) throw err;
+            })
+            connection.release();
+        })
+    });
+
+    socket.on('view', function(targetID) {
+        addView(targetID);
+    });
+
     socket.on('submitidea', function(entry){
         // Submission Code Here
         pool.getConnection(function(err, connection){
@@ -57,12 +71,12 @@ socketio.listen(server).on('connection', function (socket) {
         pool.getConnection(function(err, connection){
             if (err) throw err;
             if (isNaN(query) == false && query != '' && query != null){ // if there is a query and it is a number (id)
-                console.log("Potato");
                 connection.query(`SELECT * FROM HuiJia_Submissions WHERE id=${query}`, function(err, result) {
                     if (err) throw err;
                     if (result.length > 0) {
-                        console.log(`Retrieving card ${query} from name ${result[0].name}...`)
+                        console.log(`Retrieving card ${query} from name ${result[0].name}...`);
                         socket.emit('recCard', result[0]);
+                        addView(result[0].id);
                     }
                     connection.release();
                 });
@@ -70,9 +84,10 @@ socketio.listen(server).on('connection', function (socket) {
                 connection.query(`SELECT * FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
                     if (err) throw err;
                     if (result.length > 0) {
-                        console.log(`Retrieving random card...`)
+                        console.log(`Retrieving random card...`);
                         var randInt = rollDice(0, result.length-1);
                         socket.emit('recCard', result[randInt]);
+                        addView(result[randInt].id);
                     }
                     connection.release();
                 });
@@ -88,4 +103,14 @@ socketio.listen(server).on('connection', function (socket) {
 rollDice = (min, max) => {
     var range = max-min;
     return Math.floor(Math.random()*(range+1) + min);
+}
+
+addView = (targetID) => {
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query(`UPDATE HuiJia_Submissions SET views=views+1 WHERE id=${targetID}`, function(err, result) {
+            if (err) throw err;
+        })
+        connection.release();
+    })
 }
