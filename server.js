@@ -53,25 +53,31 @@ socketio.listen(server).on('connection', function (socket) {
         });
     });
 
-    socket.on('needRandomCard', function() {
-        console.log('random card requested');
+    socket.on('reqCard', function(query) {
         pool.getConnection(function(err, connection){
             if (err) throw err;
-            connection.query(`SELECT id FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
-                if (err) throw err;
-                const randomNumber = rollDice(0, result.length);
-                const randomId = result[randomNumber];
-                connection.query(`SELECT * FROM HuiJia_Submissions WHERE id='${randomId}`, function(err, randomEntry) {
-                    socket.emit('randomCard', randomEntry);
-                    console.log(`${randomEntry} randomCard emitted!`);
+            if (query = "random"){
+                connection.query(`SELECT * FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
+                    if (err) throw err;
+                    socket.emit('recCard', result[rollDice(0, result.length)]);
                     connection.release();
-                })
-                connection.release();
-            })
+                });
+            } else {
+                connection.query(`SELECT * FROM HuiJia_Submissions WHERE id=${query}`, function(err, result) {
+                    if (err) throw err;
+                    socket.emit('recCard', result);
+                    connection.release();
+                });
+            }
         })
-    })
-
+    });
+    
     socket.on('disconnect', function(){
         console.log(`Socket: ${socket} disconnected.`);
-    })
+    });
 });
+
+rollDice = (min, max) => {
+    var range = max-min;
+    return Math.floor(Math.random()*(range+1) + min);
+}

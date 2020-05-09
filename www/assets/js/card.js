@@ -10,9 +10,9 @@ $( document ).ready(function() {
     iosocket.on('connect', function() {
         console.log("Yo.........connected!");
 
-        iosocket.emit('needRandomCard');
+        iosocket.emit('reqCard');
 
-        iosocket.on('randomCard', function(randomEntry) {
+        iosocket.on('recCard', function(randomEntry) {
             console.log("got a random card!");
             cardTitle.innerText = randomEntry.idea;
             submittedBy.innerText = "Submitted by: " + randomEntry.name;
@@ -23,7 +23,6 @@ $( document ).ready(function() {
 
             if (randomEntry.url != "NIL") {
                 hiddenUrl.className = "";
-
             }
 
             console.log(`Random entry printed!`);

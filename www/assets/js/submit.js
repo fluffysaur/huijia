@@ -16,7 +16,7 @@ $( document ).ready(function() {
     iosocket.on('connect', function () {
         console.log("Yo.........connected!");
     
-        iosocket.emit("loadgb");
+        iosocket.emit("reqCards");
 
         window.addEventListener('load', function() {
             ideaForm.addEventListener("submit", function(ev){
