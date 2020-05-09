@@ -129,9 +129,9 @@ footer.footer {
   margin: 0 3px; }
 
 /* Custom Edits */
-#submit-button {
-  margin: 4px;
-  padding: 8px 10px;
+.btn-primary {
+  margin: 0px;
+  padding: 8px 12px;
 }
 
 #randomiser {

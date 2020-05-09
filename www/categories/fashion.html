@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Submit Your Idea! - HuiJia</title>
+    <title>Home - HuiJia</title>
     <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
-	<link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
 
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-    <a class="navbar-brand font-weight-bolder mr-3" href="index.html"><img src="assets/img/logo.png"></a>
+    <a class="navbar-brand font-weight-bolder mr-3" href="../index.html"><img src="../assets/img/logo.png"></a>
     <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,78 +57,66 @@
     <main role="main">
         
     
-    <section class="bg-gray200 pt-5 pb-5">
-    <div class="container">
-    	<div class="row justify-content-center">
-    		<div class="col-md-7">
-    			<article class="card">
-    			<img class="card-img-top mb-2" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e0245bb4e87077312cc3d102e68c1efd&auto=format&fit=crop&w=735&q=80" alt="Card image">
-    			<div class="card-body">
-					<h1 class="card-title display-4">Submit Your Idea!</h1>
-					
-					<form id="ideaForm" action="#" onsubmit="return false">
-						<div class="form-group">
-							<label for="inputName">Name</label>
-							<input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" maxlength="20">
-							<small id="nameHelp" class="form-text text-muted">You can leave this blank to submit your idea anonymously.</small>
-						</div>
-						<div class="form-group">
-							<label for="inputCategory">Category*</label>
-							<select id="inputCategory" class="form-control" required>
-								<option selected disabled value="">Select a Category</option>
-								<option>Games</option>
-								<option>Arts</option>
-								<option>Music</option>
-								<option>Cooking & Baking</option>
-								<option>DIY</option>
-								<option>Math & Science</option>
-								<option>Movies & Shows</option>
-								<option>Programming</option>
-								<option>Nature</option>
-								<option>Fashion</option>
-								<option>Wellness</option>
-								<option>Others</option>
-							</select>
-							<div class="invalid-feedback">
-								Please select a category.
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputIdea">Idea*</label>
-							<input type="text" class="form-control" id="inputIdea" maxlength="20" required>
-							<div class="invalid-feedback">
-								Please enter an idea.
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputDescription">Description*</label>
-							<textarea class="form-control" id="inputDescription" placeholder="Write your idea description here" maxlength="500" required></textarea>
-							<small id="charCount" class="form-text text-muted">Characters remaining: 500</small>
-							<div class="invalid-feedback">
-								Please enter a description for your idea.
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputURL">URL</label>
-							<input type="text" class="form-control" id="inputURL" aria-describedby="URLHelp" maxlength="3000">
-							<small id="URLHelp" class="form-text text-muted">If any. Otherwise, leave this blank.</small>
-						</div>
-						<button class="btn btn-primary btn-gray200" id="submitBtn" type="submit">Submit</button>
-					</form>
-    			</div>
-    			</article>
+    <section class="mt-4 mb-5" style="text-align: center">
+    <div class="container mb-4">
+    	<h1 class="font-weight-bold title" id="pageTitle">Fashion</h1>
+    	<div class="row" style="display: inline-block">
+    		<nav class="navbar navbar-expand-lg navbar-light bg-white pl-2 pr-2">
+    		<button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExplore" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+    		</button>
+    		<div class="collapse navbar-collapse" id="navbarsExplore">
+    			<ul class="navbar-nav">
+    				<li class="nav-item">
+    				<a class="nav-link" href="../categories/games.html">Games</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="nav-link" href="../categories/arts.html">Arts</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="../categories/music.html">Music</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="../categories/cooking.html">Cooking & Baking</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="../categories/diy.html">DIY</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="../categories/mathsci.html">Math & Science</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link" href="../categories/movies.html">Movies & Shows</a>
+					</li>
+    				<li class="nav-item dropdown">
+    				<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+    				<div class="dropdown-menu shadow-lg" aria-labelledby="dropdown01">
+						<a class="dropdown-item" href="../categories/programming.html">Programming</a>
+						<a class="dropdown-item" href="../categories/nature.html">Nature</a>
+    					<a class="dropdown-item" href="../categories/fashion.html">Fashion</a>
+    					<a class="dropdown-item" href="../categories/wellness.html">Wellness</a>
+						<a class="dropdown-item" href="../categories/others.html">Others</a>
+    				</div>
+    				</li>
+    			</ul>
+    		</div>
+    		</nav>
+    	</div>
+    </div>
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="card-columns" id="cardContainer">
     		</div>
     	</div>
-	</div>
-	
+    </div>
     </section>
         
     </main>
 
-	<script src="assets/js/app.js"></script>
-	<script src="assets/js/theme.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script defer src="assets/js/submit.js"></script>
+    <script src="../assets/js/app.js"></script>
+	<script src="../assets/js/theme.js"></script>
+	<script src="../socket.io/socket.io.js"></script>
+	<script defer src="../assets/js/category.js"></script>
     
     <footer class="footer pt-5 pb-5 text-center">
         
@@ -149,7 +138,7 @@
               https://www.wowthemes.net/freebies-license/
             -->
           <p>©  <span class="credits font-weight-bold">        
-            <a target="_blank" class="text-dark" href="https://www.wowthemes.net/pintereso-free-html-bootstrap-template/"><u>Pintereso Bootstrap HTML Template</u> by WowThemes.net.</a>
+            <a target="_blank" class="text-dark" href="https://www.wowthemes.net/pintereso-free-html-bootstrap-template/"><u>HuiJia</u> by Tan Yi Jia and Shi Hui Ling.</a>
           </span>
           </p>
     
