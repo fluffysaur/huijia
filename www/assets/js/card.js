@@ -1,72 +1,32 @@
 const iosocket = io.connect();
 
 const image = document.getElementById('category-img'),
+cardTitle = document.getElementById('idea-name'),
+submittedBy = document.getElementById('submitted-by'),
+description = document.getElementById('description'),
 hiddenUrl = document.getElementsByClassName('hide')[0];
-
-image.src = "https://www.theparisreview.org/blog/wp-content/uploads/2019/07/istock-512102071.jpg";
-
-// if URL exists
-hiddenUrl.className = "";
-
 
 $( document ).ready(function() {
     iosocket.on('connect', function() {
         console.log("Yo.........connected!");
 
-        iosocket.emit('reqCards', 'games');
+        iosocket.emit('needRandomCard');
 
-        iosocket.on('recCards', function(DBCards) {
-            document.querySelectorAll('.card').forEach(function(ent) {
-                ent.remove();
-            })
-            cardContainer.innerHTML = ``;
+        iosocket.on('randomCard', function(randomEntry) {
+            console.log("got a random card!");
+            cardTitle.innerText = randomEntry.idea;
+            submittedBy.innerText = "Submitted by: " + randomEntry.name;
+            description.innerText = randomEntry.description;
+            
+            const cat = randomEntry.category;
+            image.src = "assets/img/" + cat + ".jpg";
 
-            for (i=DBCards.length-1; i>=0; i--) {
-                cards[i] = document.createElement("div");
-                cards[i].setAttribute('id', `entry${i}`); 
-                cards[i].setAttribute('class', 'card card-pin');
+            if (randomEntry.url != "NIL") {
+                hiddenUrl.className = "";
 
-                var img = document.createElement("img");
-                img.setAttribute('class', 'card-img');
-                img.setAttribute('src', images[rollDice(1,1)]);
-                img.setAttribute('alt', 'Card Image');
-
-                var overlay = document.createElement("div");
-                overlay.setAttribute('class', 'overlay');
-
-                var title = document.createElement("h2");
-                title.setAttribute('class', 'card-title title');
-                title.innerHTML = DBCards[i].idea;
-
-                var author = document.createElement("h5");
-                author.setAttribute('class', 'card-author text-muted');
-                author.innerHTML = `Submitted by ${DBCards[i].name}`;
-
-                var description = document.createElement("p");
-                description.setAttribute('class', 'card-description');
-                description.innerHTML = DBCards[i].description;
-
-                if (DBCards[i].url != "NIL") {
-                    var url = DBCards[i].url;
-                    if (/http\/\//.test(URL) == false && /https\/\//.test(URL) == false){
-                        url = `https://${url}`;
-                    };
-                    overlay.addEventListener("click", function(){window.open(url)});
-                } else {
-                    overlay.style.cursor = 'default';
-                }
-
-                cardContainer.appendChild(cards[i]);
-                overlay.appendChild(title);
-                overlay.appendChild(author);
-                overlay.appendChild(description);
-                cards[i].appendChild(img);
-                cards[i].appendChild(overlay);
-
-                
-
-                console.log(`Entry ${i} printed!`);
             }
+
+            console.log(`Random entry printed!`);
         });
 
         iosocket.on('disconnect', function() {

@@ -139,13 +139,13 @@ footer.footer {
   font-size: large;
 }
 
-.submitted-by {
+#submitted-by {
   font-size: small;
   color: gray;
   margin: 0px 0px 10px 5px;
 }
 
-.description {
+#description {
   margin: 0px 0px 12px 5px;
 }
 

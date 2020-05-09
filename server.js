@@ -53,6 +53,24 @@ socketio.listen(server).on('connection', function (socket) {
         });
     });
 
+    socket.on('needRandomCard', function() {
+        console.log('random card requested');
+        pool.getConnection(function(err, connection){
+            if (err) throw err;
+            connection.query(`SELECT id FROM HuiJia_Submissions WHERE approved=1`, function(err, result) {
+                if (err) throw err;
+                const randomNumber = rollDice(0, result.length);
+                const randomId = result[randomNumber];
+                connection.query(`SELECT * FROM HuiJia_Submissions WHERE id='${randomId}`, function(err, randomEntry) {
+                    socket.emit('randomCard', randomEntry);
+                    console.log(`${randomEntry} randomCard emitted!`);
+                    connection.release();
+                })
+                connection.release();
+            })
+        })
+    })
+
     socket.on('disconnect', function(){
         console.log(`Socket: ${socket} disconnected.`);
     })
