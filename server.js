@@ -37,6 +37,17 @@ socketio.listen(server).on('connection', function (socket) {
         })
     });
 
+    socket.on('unupvote', function(targetID) {
+        console.log('unupvoted ' + targetID);
+        pool.getConnection(function(err, connection) {
+            if (err) throw err;
+            connection.query(`UPDATE HuiJia_Submissions SET upvotes=upvotes-1 WHERE id=${targetID}`, function(err, result) {
+                if (err) throw err;
+            })
+            connection.release();
+        })
+    })
+
     // socket.on('view', function(targetID) {
     //     addView(targetID);
     // });

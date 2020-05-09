@@ -96,15 +96,18 @@ $( document ).ready(function() {
             if (!upvoted) {
                 iosocket.emit('upvote', cardId);
                 upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) + 1;
-                upvoted = true;
                 upvotes.children[1].setAttribute("class", "bi bi-caret-up hide");
                 upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill");
+                upvoted = true;
                 console.log(`upvoted ${cardId}`);
             } else {
+                iosocket.emit('unupvote', cardId);
+                upvoteNumber.innerHTML = parseInt(upvoteNumber.innerHTML) - 1;
                 upvotes.children[1].setAttribute("class", "bi bi-caret-up");
                 upvotes.children[2].setAttribute("class", "bi bi-caret-up-fill hide");
-                alert("You've already upvoted once! You can't do it again :(");
-            }
+                upvoted = false;
+                console.log(`un-upvoted ${cardId}`);
+            } 
         });
 
         iosocket.on('disconnect', function() {
