@@ -5,7 +5,7 @@ const iosocket = io.connect();
 const cardContainer = document.getElementById("cardContainer");
 var cards = [];
 var images = {
-    games : "https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1134&q=80";
+    games : "https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1134&q=80",
     music : "https://images.unsplash.com/photo-1585298723682-7115561c51b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
 }
 
@@ -29,7 +29,7 @@ $( document ).ready(function() {
 
                 var img = document.createElement("img");
                 img.setAttribute('class', 'card-img');
-                img.setAttribute('src', images[rollDice(1,1)]);
+                img.setAttribute('src', images.games);
                 img.setAttribute('alt', 'Card Image');
 
                 var overlay = document.createElement("div");

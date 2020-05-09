@@ -13,15 +13,15 @@ $( document ).ready(function() {
     var foodCard = document.getElementById("foodcard");
     var othersCard = document.getElementById("otherscard");
 
-    gamesCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    musicCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    drawingCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    mathsciCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    progCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    handsonCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    homeimprovCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    foodCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
-    othersCard.addEventListener("click", function(){window.location.href = 'cat_games.html'});
+    gamesCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    musicCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    drawingCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    mathsciCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    progCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    handsonCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    homeimprovCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    foodCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
+    othersCard.addEventListener("click", function(){window.location.href = 'categories/games.html'});
 
     iosocket.on('connect', function () {
         console.log("Yo.........connected!");
