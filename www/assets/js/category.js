@@ -32,13 +32,28 @@ var images = {
     nature : "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80",
     wellness : "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1931&q=80"
 };
+var catRetriever = {
+    games : 'Games',
+    arts : 'Arts',
+    music : 'Music',
+    cooking : 'Cooking',
+    diy : 'DIY',
+    mathsci : 'Mathsci',
+    movies : 'Movies',
+    programming : 'Programming',
+    nature : 'Nature',
+    fashion : 'Fashion',
+    wellness : 'Wellness',
+    others : 'Others'
+
+}
 
 $( document ).ready(function() {
 
     iosocket.on('connect', function() {
         console.log("Yo.........connected!");
 
-        iosocket.emit('reqCards', pageName);
+        iosocket.emit('reqCards', catRetriever[pageName]);
 
         iosocket.on('recCards', function(DBCards) {
             document.querySelectorAll('.card').forEach(function(ent) {
@@ -79,13 +94,13 @@ $( document ).ready(function() {
                 author.innerHTML = `Submitted by ${DBCards[i].name}`;
 
                 var description = document.createElement("p");
-                description.setAttribute('class', 'card-description');
+                description.setAttribute('class', 'card-description truncate-overflow');
                 description.innerHTML = DBCards[i].description;
 
                 let upvoteBtn = document.createElement("a");
                 upvoteBtn.setAttribute('class', 'badge badge-success');
                 let upvoteIcon = document.createElement("span");
-                upvoteIcon.setAttribute('class', 'glyphicon glyphicon-arrow-up');
+                upvoteIcon.setAttribute('class', 'iconic iconic-caret-up');
                 upvoteIcon.setAttribute('aria-hidden', 'true');
                 let upvotesCount = document.createTextNode("Upvotes: " + DBCards[i].upvotes);
                 upvoteBtn.appendChild(upvoteIcon);
@@ -94,7 +109,7 @@ $( document ).ready(function() {
                 let viewsBtn = document.createElement("a");
                 viewsBtn.setAttribute('class', 'badge badge-secondary');
                 let viewIcon = document.createElement("span");
-                viewIcon.setAttribute('class', 'glyphicon glyphicon-eye-open');
+                viewIcon.setAttribute('class', 'iconic iconic-eye-open');
                 viewIcon.setAttribute('aria-hidden', 'true');
                 let viewCount = document.createTextNode("Views: " + DBCards[i].views + " ");
                 viewsBtn.appendChild(viewIcon);
