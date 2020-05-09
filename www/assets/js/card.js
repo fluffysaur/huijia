@@ -34,10 +34,10 @@ $( document ).ready(function() {
         iosocket.emit('getCard', query);
 
         iosocket.on('recCard', function(entry) {
-            cardTitle.innerText = entry.idea;
-            cardName.innerText = `Submitted by: ${entry.name}`;
-            description.innerText = entry.description;
-            cardCategory.innerText = `Category: ${entry.category}`;
+            cardTitle.innerHTML = entry.idea;
+            cardName.innerHTML = `Submitted by: ${entry.name}`;
+            description.innerHTML = entry.description;
+            cardCategory.innerHTML = `Category: ${entry.category}`;
 
             if (entry.imageurl != "NIL" && entry.imageurl != "") {
                 var url = entry.imageurl;

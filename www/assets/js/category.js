@@ -82,25 +82,28 @@ $( document ).ready(function() {
                 description.setAttribute('class', 'card-description');
                 description.innerHTML = DBCards[i].description;
 
-                var statsCounter = document.createElement("div");
-                statsCounter.setAttribute('class', 'more');
-
-                let upvoteLink = document.createElement("a");
-                upvoteLink.setAttribute('class', 'more-more');
+                let upvoteBtn = document.createElement("a");
+                upvoteBtn.setAttribute('class', 'badge badge-success');
                 let upvoteIcon = document.createElement("span");
                 upvoteIcon.setAttribute('class', 'glyphicon glyphicon-arrow-up');
                 upvoteIcon.setAttribute('aria-hidden', 'true');
-                let upvotesCount = document.createTextNode("Upvotes: " + DBCards[i].upvotes + " ");
-                upvoteLink.appendChild(upvoteIcon);
-                upvoteLink.appendChild(upvotesCount);
-                statsCounter.appendChild(upvoteLink);
+                let upvotesCount = document.createTextNode("Upvotes: " + DBCards[i].upvotes);
+                upvoteBtn.appendChild(upvoteIcon);
+                upvoteBtn.appendChild(upvotesCount);
 
+                let viewsBtn = document.createElement("a");
+                viewsBtn.setAttribute('class', 'badge badge-secondary');
                 let viewIcon = document.createElement("span");
                 viewIcon.setAttribute('class', 'glyphicon glyphicon-eye-open');
                 viewIcon.setAttribute('aria-hidden', 'true');
-                let viewCount = document.createTextNode("Views: " + DBCards[i].views);
-                statsCounter.appendChild(viewIcon);
-                statsCounter.appendChild(viewCount);
+                let viewCount = document.createTextNode("Views: " + DBCards[i].views + " ");
+                viewsBtn.appendChild(viewIcon);
+                viewsBtn.appendChild(viewCount);
+
+                var statsCounter = document.createElement("div");
+                statsCounter.setAttribute('class', 'more');
+                statsCounter.appendChild(viewsBtn);
+                statsCounter.appendChild(upvoteBtn);
 
                 cardContainer.appendChild(cards[i]);
                 overlay.appendChild(title);
