@@ -98,15 +98,21 @@ footer.footer {
 
 .card-author {
   color: #ffffff;
-  margin: 0px 0px 15px;
+  margin: 0px 0px 0px;
   text-align: center;
   font-size: 0.8em; }
 
 .card-description {
   color: #ffffff;
-  margin: 15px 0px 15px;
+  margin: 20px 0px 15px;
   text-align: center;
   font-size: 1em; }
+
+.card-category {
+  color: #ffffff;
+  margin: 0px 0px 15px;
+  text-align: center;
+  font-size: 0.8em; }
 
 /* line 73, src/assets/scss/theme.scss */
 .card-pin:hover .more a {
@@ -137,12 +143,6 @@ footer.footer {
 #randomiser {
   margin: 10px 0px 0px 0px;
   font-size: large;
-}
-
-#submitted-by {
-  font-size: small;
-  color: gray;
-  margin: 0px 0px 10px 5px;
 }
 
 #description {

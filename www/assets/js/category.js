@@ -66,7 +66,7 @@ $( document ).ready(function() {
                 description.innerHTML = DBCards[i].description;
 
                 var id = DBCards[i].id;
-                overlay.addEventListener("click", function(){window.open(`../card.html?query=${id}`)});
+                overlay.addEventListener("click", function(){window.open(`../card.html?query=${id}`,"_self")});
 
                 if (DBCards[i].url != "NIL") {
                     var url = DBCards[i].url;
