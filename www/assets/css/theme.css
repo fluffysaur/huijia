@@ -129,7 +129,7 @@ footer.footer {
   margin: 0 3px; }
 
 /* Custom Edits */
-.btn-primary {
+#submit-button {
   margin: 4px;
   padding: 8px 10px;
 }
