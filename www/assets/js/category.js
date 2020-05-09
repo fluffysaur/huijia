@@ -16,7 +16,6 @@ console.log(paramType);
 
 // pageTitle.innerHTML = pageName;
 
-var overlays = document.getElementsByClassName("overlay");
 var cardID = [];
 var cards = [];
 var images = {
@@ -65,11 +64,11 @@ $( document ).ready(function() {
                 }
                 img.setAttribute('alt', 'Card Image');
 
-                overlay = document.createElement("div");
+                var overlay = document.createElement("div");
                 overlay.setAttribute('id', `${DBCards.id}`);
                 overlay.setAttribute('class', 'overlay');
                 overlay.setAttribute('onclick', `document.location='../card.html?query=${DBCards[i].id}'`);
-                console.log(`document.location='../card.html?query=${DBCards[i].id}'`)
+                console.log(`document.location='../card.html?query=${DBCards[i].id}'`);
 
                 var title = document.createElement("h2");
                 title.setAttribute('class', 'card-title title');
@@ -83,10 +82,31 @@ $( document ).ready(function() {
                 description.setAttribute('class', 'card-description');
                 description.innerHTML = DBCards[i].description;
 
+                var statsCounter = document.createElement("div");
+                statsCounter.setAttribute('class', 'more');
+
+                let upvoteLink = document.createElement("a");
+                upvoteLink.setAttribute('class', 'more-more');
+                let upvoteIcon = document.createElement("span");
+                upvoteIcon.setAttribute('class', 'glyphicon glyphicon-arrow-up');
+                upvoteIcon.setAttribute('aria-hidden', 'true');
+                let upvotesCount = document.createTextNode("Upvotes: " + DBCards[i].upvotes + " ");
+                upvoteLink.appendChild(upvoteIcon);
+                upvoteLink.appendChild(upvotesCount);
+                statsCounter.appendChild(upvoteLink);
+
+                let viewIcon = document.createElement("span");
+                viewIcon.setAttribute('class', 'glyphicon glyphicon-eye-open');
+                viewIcon.setAttribute('aria-hidden', 'true');
+                let viewCount = document.createTextNode("Views: " + DBCards[i].views);
+                statsCounter.appendChild(viewIcon);
+                statsCounter.appendChild(viewCount);
+
                 cardContainer.appendChild(cards[i]);
                 overlay.appendChild(title);
                 overlay.appendChild(author);
                 overlay.appendChild(description);
+                overlay.appendChild(statsCounter);
                 cards[i].appendChild(img);
                 cards[i].appendChild(overlay);
 
