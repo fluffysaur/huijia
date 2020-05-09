@@ -55,7 +55,7 @@ $( document ).ready(function() {
 
         iosocket.emit('reqCards', catRetriever[pageName]);
 
-        iosocket.on('recCards', function(DBCards) {
+        iosocket.on('recCards', async function(DBCards) {
             document.querySelectorAll('.card').forEach(function(ent) {
                 ent.remove();
             })
@@ -78,7 +78,20 @@ $( document ).ready(function() {
                     img.src = images[pageName];
                 }
                 img.setAttribute('alt', 'Card Image');
+                
+                let promise = new Promise((resolve, reject) => {
+                    img.addEventListener("load", function() {
+                        var numRatio = img.height/img.width;
+                        resolve(numRatio);
+                    });
+                })
 
+                let imgRatio = await promise;
+                console.log("imgRatio = "+imgRatio);
+                
+                var maxLines = Math.floor(imgRatio*5);
+                console.log("maxLines = "+maxLines);
+                
                 var overlay = document.createElement("div");
                 overlay.setAttribute('id', `${DBCards.id}`);
                 overlay.setAttribute('class', 'overlay');
@@ -95,10 +108,11 @@ $( document ).ready(function() {
 
                 var description = document.createElement("p");
                 description.setAttribute('class', 'card-description truncate-overflow');
+                description.setAttribute('style', `-webkit-line-clamp: ${maxLines};`)
                 description.innerHTML = DBCards[i].description;
 
                 let upvoteBtn = document.createElement("a");
-                upvoteBtn.setAttribute('class', 'badge badge-success');
+                upvoteBtn.setAttribute('class', 'stats badge badge-success');
                 let upvoteIcon = document.createElement("span");
                 upvoteIcon.setAttribute('class', 'iconic iconic-caret-up');
                 upvoteIcon.setAttribute('aria-hidden', 'true');
@@ -107,7 +121,7 @@ $( document ).ready(function() {
                 upvoteBtn.appendChild(upvotesCount);
 
                 let viewsBtn = document.createElement("a");
-                viewsBtn.setAttribute('class', 'badge badge-secondary');
+                viewsBtn.setAttribute('class', 'stats badge badge-secondary');
                 let viewIcon = document.createElement("span");
                 viewIcon.setAttribute('class', 'iconic iconic-eye-open');
                 viewIcon.setAttribute('aria-hidden', 'true');
