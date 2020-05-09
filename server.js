@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express')
 , app = express()
 , server = require('http').createServer(app)
-, port = process.argv[2] || 3000
+, port = process.env.PORT || 3000
 , socketio = require('socket.io')
 , mysql = require('mysql')
 , pool = mysql.createPool({
