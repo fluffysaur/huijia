@@ -38,7 +38,7 @@ $( document ).ready(function() {
             cardName.innerText = `Submitted by: ${entry.name}`;
             description.innerText = entry.description;
             cardCategory.innerText = `Category: ${entry.category}`;
-            
+
             if (entry.imageurl != "NIL" && entry.imageurl != "") {
                 var url = entry.imageurl;
                 if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
@@ -54,11 +54,30 @@ $( document ).ready(function() {
                 if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
                     url = `https://${url}`;
                 };
-                hiddenUrl.className = "d-block";
-                const btn = hiddenUrl.getElementsByClassName('btn')[0];
-                btn.setAttribute("href", url);
-                btn.setAttribute("target", "_blank");
-                btn.setAttribute("rel", "noopener noreferrer");
+                // hiddenUrl.className = "d-block";
+                // const btn = hiddenUrl.getElementsByClassName('btn')[0];
+                // btn.setAttribute("href", url);
+                // btn.setAttribute("target", "_blank");
+                // btn.setAttribute("rel", "noopener noreferrer");
+                
+                const displayBlock = document.getElementById("display-block");
+
+                var extURL = document.createElement("small");
+                extURL.setAttribute("class", "d-block");
+
+                var extURLButton = document.createElement("a");
+                extURLButton.setAttribute("class", "btn btn-sm btn-gray200");
+                extURLButton.setAttribute("href", url);
+                extURLButton.setAttribute("target", "_blank");
+                extURLButton.setAttribute("rel", "noopener noreferrer");
+                extURLButton.innerText = "Visit Website ";
+
+                var idk = document.createElement("i");
+                idk.setAttribute("class", "fa fa-external-link");
+
+                extURLButton.appendChild(idk);
+                extURL.appendChild(extURLButton);
+                displayBlock.appendChild(extURL);
             }
 
             console.log(`Entry printed!`);
