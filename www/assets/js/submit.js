@@ -25,7 +25,7 @@ $( document ).ready(function() {
             var inputImg = imgField.value;
             if (imgField.value == null || imgField.value == '') inputImg = "NIL";
             var cate = catField.value;
-            if (cate == "Math & Science") cate = "Mathsci";
+            if (cate == "Maths & Science") cate = "Mathsci";
             if (cate == "Cooking & Baking") cate = "Cooking";
             if (cate == "Movies & Shows") cate = "Movies";
             if (cate == "DIY & Home Improvement") cate = "DIY";

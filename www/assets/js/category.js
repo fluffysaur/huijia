@@ -29,7 +29,7 @@ var images = {
     programming : "assets/img/programming.jpg", 
     others : "https://66.media.tumblr.com/ff9d36e792ce79cd1406466bed141bde/tumblr_p71wimTDxQ1x6lzc3o1_1280.png",
     fashion : "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80", 
-    nature : "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80",
+    reading : "https://i.pinimg.com/originals/99/be/1c/99be1cdbeb0ee7b6388cacfbde20ddd1.jpg",
     wellness : "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1931&q=80"
 };
 var catRetriever = {
@@ -41,7 +41,7 @@ var catRetriever = {
     mathsci : 'Mathsci',
     movies : 'Movies',
     programming : 'Programming',
-    nature : 'Nature',
+    reading : 'Reading',
     fashion : 'Fashion',
     wellness : 'Wellness',
     others : 'Others'
