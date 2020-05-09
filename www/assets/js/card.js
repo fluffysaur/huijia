@@ -38,8 +38,17 @@ $( document ).ready(function() {
             cardName.innerText = `Submitted by: ${entry.name}`;
             description.innerText = entry.description;
             cardCategory.innerText = `Category: ${entry.category}`;
-            cardImg.src = images[entry.category];
-
+            
+            if (entry.imageurl != "NIL" && entry.imageurl != "") {
+                var url = entry.imageurl;
+                if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
+                    url = `https://${url}`;
+                };
+                cardImg.src = url;
+            } else {
+                cardImg.src = images[entry.category];
+            }
+            
             if (entry.url != "NIL") {
                 var url = entry.url;
                 if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
@@ -50,7 +59,6 @@ $( document ).ready(function() {
                 btn.setAttribute("href", url);
                 btn.setAttribute("target", "_blank");
                 btn.setAttribute("rel", "noopener noreferrer");
-                console.log(hiddenUrl);
             }
 
             console.log(`Entry printed!`);
