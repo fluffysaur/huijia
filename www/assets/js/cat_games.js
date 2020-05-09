@@ -7,6 +7,7 @@ var cards = [];
 var images = []
 images[0]="https://images.unsplash.com/photo-1588495752527-77d65c21f7cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=313&q=80";
 images[1]="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1134&q=80";
+// images[2]="https://images.unsplash.com/photo-1585298723682-7115561c51b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"; // Can use this for music instead
 
 
 $( document ).ready(function() {
