@@ -47,34 +47,33 @@ footer.footer {
 
 /* line 32, src/assets/scss/theme.scss */
 .navbar {
-  padding: 0.5rem 2rem; 
-}
+  padding: 0.5rem 2rem; }
 
 /* line 34, src/assets/scss/theme.scss */
 .overlay {
   position: absolute;
+  padding: 5px 10px 5px;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   height: 100%;
   width: 100%;
-  opacity: 0;
+  opacity: .7;
   -webkit-transition: .2s ease;
-  transition: .2s ease;
-  background-color: #008CBA; }
+  transition: .2s ease;}
 
 /* line 46, src/assets/scss/theme.scss */
 .card {
-  border: 0; }
+  border: 0;}
 
 /* line 47, src/assets/scss/theme.scss */
 .card-pin:hover .overlay {
-  opacity: .5;
+  opacity: 1;
   border: 5px solid #f3f3f3;
   -webkit-transition: ease .2s;
   transition: ease .2s;
-  background-color: #000000;
+  background-color: #0000009a;
   cursor: -webkit-zoom-in;
   cursor: pointer; }
 
@@ -91,11 +90,23 @@ footer.footer {
   -ms-transform: translate(-50%, -50%); }
 
 /* line 66, src/assets/scss/theme.scss */
-.card-pin:hover .card-title {
+.card-title {
   color: #ffffff;
-  margin-top: 20px;
+  margin: 10px 0px 3px;
   text-align: center;
-  font-size: 1.5em; }
+  font-size: 1.2em; }
+
+.card-author {
+  color: #ffffff;
+  margin: 0px 0px 15px;
+  text-align: center;
+  font-size: 0.8em; }
+
+.card-description {
+  color: #ffffff;
+  margin: 15px 0px 15px;
+  text-align: center;
+  font-size: 1em; }
 
 /* line 73, src/assets/scss/theme.scss */
 .card-pin:hover .more a {
@@ -117,6 +128,7 @@ footer.footer {
 .social .fa {
   margin: 0 3px; }
 
+/* Custom Edits */
 .btn-primary {
   margin: 4px;
   padding: 8px 10px;
