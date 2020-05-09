@@ -26,7 +26,8 @@ server.listen(port, function(){
 socketio.listen(server).on('connection', function (socket) {
     console.log(`Got a connection on socket: ${socket}.`);
 
-    socket.on('upvote', function(id) {
+    socket.on('upvote', function(targetID) {
+        console.log('upvoted ' + targetID);
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(`UPDATE HuiJia_Submissions SET upvotes=upvotes+1 WHERE id=${targetID}`, function(err, result) {
@@ -36,9 +37,9 @@ socketio.listen(server).on('connection', function (socket) {
         })
     });
 
-    socket.on('view', function(targetID) {
-        addView(targetID);
-    });
+    // socket.on('view', function(targetID) {
+    //     addView(targetID);
+    // });
 
     socket.on('submitidea', function(entry){
         // Submission Code Here
