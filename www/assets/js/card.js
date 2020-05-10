@@ -13,6 +13,7 @@ cardCategory = document.getElementById('cardCategory'),
 upvoteBtn = document.getElementById('upvotes'),
 upvoteNumber = document.getElementById('number'),
 upvoteContainer = document.getElementById('upvoteContainer'),
+randomBtn = document.getElementById('randomBtn'),
 views = document.getElementById('number-of-views');
 // upvoted = false;
 
@@ -40,63 +41,63 @@ $( document ).ready(function() {
 
         iosocket.on('recCard', function(entry) {
             if (entry == "empty") {
-                cardTitle.innerHTML = "This idea doesn't exist.<br>Why not submit one?"
-                return;
-            }
-            cardTitle.innerHTML = entry.idea;
-            upvoteContainer.setAttribute('class', 'ml-auto') 
-            cardName.innerHTML = `Submitted by: ${entry.name}`;
-            description.innerHTML = entry.description;
-            cardCategory.innerHTML = `Category: ${entry.category}`;
-            upvoteNumber.innerHTML = entry.upvotes;
-            console.log(upvoteBtn);
-            views.innerHTML = `Views: ${entry.views}`;
-
-            if (entry.imageurl != "NIL" && entry.imageurl != "") {
-                var url = entry.imageurl;
-                if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
-                    url = `https://${url}`;
-                };
-                checkImage(entry.imageurl,
-                    function(){cardImg.src = entry.imageurl; console.log("Image Retrieved");},
-                    function(){cardImg.src = images[entry.category]; console.log(`Unable to retrieve image from ${url}. Replacing with default image.`)
-                }); // Check if image exists. If not, replace with default image.
+                cardTitle.innerHTML = "This idea doesn't exist.<br>Why not submit one?";
             } else {
-                cardImg.src = images[entry.category];
-            }
-            
-            if (entry.url != "NIL") {
-                var url = entry.url;
-                if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
-                    url = `https://${url}`;
-                };
-                // hiddenUrl.className = "d-block";
-                // const btn = hiddenUrl.getElementsByClassName('btn')[0];
-                // btn.setAttribute("href", url);
-                // btn.setAttribute("target", "_blank");
-                // btn.setAttribute("rel", "noopener noreferrer");
+                cardTitle.innerHTML = entry.idea;
+                upvoteContainer.setAttribute('class', 'ml-auto') 
+                cardName.innerHTML = `Submitted by: ${entry.name}`;
+                description.innerHTML = entry.description;
+                cardCategory.innerHTML = `Category: ${entry.category}`;
+                upvoteNumber.innerHTML = entry.upvotes;
+                console.log(upvoteBtn);
+                views.innerHTML = `Views: ${entry.views}`;
+
+                if (entry.imageurl != "NIL" && entry.imageurl != "") {
+                    var url = entry.imageurl;
+                    if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
+                        url = `https://${url}`;
+                    };
+                    checkImage(entry.imageurl,
+                        function(){cardImg.src = entry.imageurl; console.log("Image Retrieved");},
+                        function(){cardImg.src = images[entry.category]; console.log(`Unable to retrieve image from ${url}. Replacing with default image.`)
+                    }); // Check if image exists. If not, replace with default image.
+                } else {
+                    cardImg.src = images[entry.category];
+                }
                 
-                const displayBlock = document.getElementById("display-block");
+                if (entry.url != "NIL") {
+                    var url = entry.url;
+                    if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
+                        url = `https://${url}`;
+                    };
+                    // hiddenUrl.className = "d-block";
+                    // const btn = hiddenUrl.getElementsByClassName('btn')[0];
+                    // btn.setAttribute("href", url);
+                    // btn.setAttribute("target", "_blank");
+                    // btn.setAttribute("rel", "noopener noreferrer");
+                    
+                    const displayBlock = document.getElementById("display-block");
 
-                var extURL = document.createElement("small");
-                extURL.setAttribute("class", "d-block");
+                    var extURL = document.createElement("small");
+                    extURL.setAttribute("class", "d-block");
 
-                var extURLButton = document.createElement("a");
-                extURLButton.setAttribute("class", "btn btn-sm btn-gray200");
-                extURLButton.setAttribute("href", url);
-                extURLButton.setAttribute("target", "_blank");
-                extURLButton.setAttribute("rel", "noopener noreferrer");
-                extURLButton.innerText = "Visit Website ";
+                    var extURLButton = document.createElement("a");
+                    extURLButton.setAttribute("class", "btn btn-sm btn-gray200");
+                    extURLButton.setAttribute("href", url);
+                    extURLButton.setAttribute("target", "_blank");
+                    extURLButton.setAttribute("rel", "noopener noreferrer");
+                    extURLButton.innerText = "Visit Website ";
 
-                var extURLIcon = document.createElement("i");
-                extURLIcon.setAttribute("class", "fa fa-external-link");
+                    var extURLIcon = document.createElement("i");
+                    extURLIcon.setAttribute("class", "fa fa-external-link");
 
-                extURLButton.appendChild(extURLIcon);
-                extURL.appendChild(extURLButton);
-                displayBlock.appendChild(extURL);
+                    extURLButton.appendChild(extURLIcon);
+                    extURL.appendChild(extURLButton);
+                    displayBlock.appendChild(extURL);
+                }
             }
-
-            console.log(`Entry printed!`);
+            randomBtn.setAttribute('class', 'btn btn-danger');
+            console.log(`All entries printed!`);
         });
 
         upvoteBtn.addEventListener("click", function(){
