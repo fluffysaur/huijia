@@ -7,4 +7,4 @@ To encourage people to stay at home, we created this website: a treasure chest o
 Play around with the site [HERE](https://huijia.herokuapp.com/index.html).
 
 
-_Made with: HTML/CSS/JS for #codeforcorona 2020._
+_Made with: HTML/CSS/JS for #codeForCorona 2020._
