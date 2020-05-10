@@ -170,7 +170,7 @@ footer.footer {
 .brand-name {
   font-size: 25px;
   font-family: 'Rubik', sans-serif;
-  margin: 10px 30px 10px 10px;
+  margin: 10px 20px 10px 10px;
   cursor: pointer
 }
 
@@ -194,6 +194,20 @@ footer.footer {
 
 .stats {
   font-size: 0.75vw;
+}
+
+@media (max-width: 792px) {
+  .brand-name {
+    font-size: 20px;
+    margin: 10px 10px 10px 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .brand-name {
+    font-size: 25px;
+    margin: 10px 0px 0px 10px;
+  }
 }
 
 @media (max-width: 575px) {
