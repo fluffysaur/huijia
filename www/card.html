@@ -51,18 +51,18 @@
     	<div class="row justify-content-center">
     		<div class="col-md-8">
     			<article class="card">
-				<img class="card-img-top mb-2" id="category-img" alt="Card image">
+				<img class="card-img-top mb-2" id="category-img" alt="">
 				<!--img src to be assigned by js-->
     			<div class="card-body" id="display-block">
-    				<h1 class="card-title display-4" id="idea-name" style="color:black"> </h1>
-					<p class="card-author text-muted" id="cardName"> </p>
-					<p class="card-category text-muted" id="cardCategory"> </p>
-    				<p id="description"> </p>
+    				<h1 class="card-title single-card display-4" id="idea-name" style="color:black">Loading, please wait...</h1>
+					<p class="card-author text-muted" id="cardName"></p>
+					<p class="card-category text-muted" id="cardCategory"></p>
+    				<p id="description"></p>
     				<!--<small class="d-block hide"><a class="btn btn-sm btn-gray200" href="#"><i class="fa fa-external-link"></i> Visit Website</a></small>-->
 				</div>
 				<div class="d-flex">
-					<div id="number-of-views">Number of views: </div>
-					<div class="ml-auto"><a class="btn" id="upvotes"><span id="number">0</span><svg class="bi bi-caret-up" width="1.2em" height="1.2em" viewBox="0 0 15 11" fill="green" xmlns="http://www.w3.org/2000/svg">
+					<div id="number-of-views"></div>
+					<div class="ml-auto d-none" id="upvoteContainer"><a class="btn" id="upvotes" title="Upvotes""><span id="number">0</span><svg class="bi bi-caret-up" width="1.2em" height="1.2em" viewBox="0 0 15 11" fill="green" xmlns="http://www.w3.org/2000/svg">
 						<path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 011.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 01-.753-1.659z" clip-rule="evenodd"/>
 					</svg>
 					<svg class="bi bi-caret-up-fill hide" width="1.2em" height="1.2em" viewBox="0 0 15 11" fill="green" xmlns="http://www.w3.org/2000/svg">

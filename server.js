@@ -89,6 +89,8 @@ socketio.listen(server).on('connection', function (socket) {
                         console.log(`Retrieving card ${query} from name ${result[0].name}...`);
                         socket.emit('recCard', result[0]);
                         addView(result[0].id);
+                    } else {
+                        socket.emit('recCard', "empty");
                     }
                     connection.release();
                 });

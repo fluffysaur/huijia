@@ -58,6 +58,11 @@ $( document ).ready(function() {
             document.querySelectorAll('.card').forEach(function(ent) {
                 ent.remove();
             })
+            cardContainer.innerHTML = "";
+
+            if (DBCards.length == 0) {
+                cardContainer.innerHTML = "No ideas submitted here. Submit one!"
+            }
 
             for (i=DBCards.length-1; i>=0; i--) {
                 cards[i] = document.createElement("div");

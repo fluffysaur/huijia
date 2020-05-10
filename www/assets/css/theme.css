@@ -98,6 +98,11 @@ footer.footer {
   text-align: center;
   font-size: 1.2vw; }
 
+.single-card {
+  font-size: 2vw;
+  margin: 0vw 0vw 0.4vw;
+}
+
 .card-author {
   color: #ffffff;
   margin: 0vw 0vw 0vw;

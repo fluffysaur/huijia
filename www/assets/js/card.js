@@ -12,6 +12,7 @@ hiddenUrl = document.getElementsByClassName('hide')[0],
 cardCategory = document.getElementById('cardCategory'),
 upvoteBtn = document.getElementById('upvotes'),
 upvoteNumber = document.getElementById('number'),
+upvoteContainer = document.getElementById('upvoteContainer'),
 views = document.getElementById('number-of-views');
 // upvoted = false;
 
@@ -38,13 +39,18 @@ $( document ).ready(function() {
         iosocket.emit('getCard', query);
 
         iosocket.on('recCard', function(entry) {
+            if (entry == "empty") {
+                cardTitle.innerHTML = "This idea doesn't exist.<br>Why not submit one?"
+                return;
+            }
             cardTitle.innerHTML = entry.idea;
+            upvoteContainer.setAttribute('class', 'ml-auto') 
             cardName.innerHTML = `Submitted by: ${entry.name}`;
             description.innerHTML = entry.description;
             cardCategory.innerHTML = `Category: ${entry.category}`;
             upvoteNumber.innerHTML = entry.upvotes;
             console.log(upvoteBtn);
-            views.innerHTML = `Number of views: ${entry.views}`;
+            views.innerHTML = `Views: ${entry.views}`;
 
             if (entry.imageurl != "NIL" && entry.imageurl != "") {
                 var url = entry.imageurl;
