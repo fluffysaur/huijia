@@ -51,7 +51,10 @@ $( document ).ready(function() {
                 if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
                     url = `https://${url}`;
                 };
-                cardImg.src = url;
+                checkImage(entry.imageurl,
+                    function(){cardImg.src = entry.imageurl; console.log("Image Retrieved");},
+                    function(){cardImg.src = images[entry.category]; console.log(`Unable to retrieve image from ${url}. Replacing with default image.`)
+                }); // Check if image exists. If not, replace with default image.
             } else {
                 cardImg.src = images[entry.category];
             }
@@ -135,4 +138,11 @@ $( document ).ready(function() {
 rollDice = (min, max) => {
     var range = max-min;
     return Math.floor(Math.random()*(range+1) + min);
+}
+
+checkImage = (imageSrc, good, bad) => {
+    var img = new Image();
+    img.src = imageSrc;
+    img.onload = good; 
+    img.onerror = bad;
 }

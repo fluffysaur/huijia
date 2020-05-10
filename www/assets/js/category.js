@@ -71,7 +71,10 @@ $( document ).ready(function() {
                     if (/http:\/\//.test(url) == false && /https:\/\//.test(url) == false){
                         url = `https://${url}`;
                     };
-                    img.src = url;
+                    checkImage(url,
+                        function(){img.src = url; console.log("Image Retrieved");},
+                        function(){img.src = images[pageName]; console.log(`Unable to retrieve image from ${url}. Replacing with default image.`)
+                    }); // Check if image exists. If not, replace with default image.
                 } else {
                     img.src = images[pageName];
                 }
@@ -85,10 +88,10 @@ $( document ).ready(function() {
                 })
 
                 let imgRatio = await promise;
-                console.log("imgRatio = "+imgRatio);
+                // console.log("imgRatio = "+imgRatio);
                 
                 var maxLines = Math.floor(imgRatio*5);
-                console.log("maxLines = "+maxLines);
+                // console.log("maxLines = "+maxLines);
                 
                 var overlay = document.createElement("div");
                 overlay.setAttribute('id', `${DBCards.id}`);
@@ -153,4 +156,11 @@ $( document ).ready(function() {
 rollDice = (min, max) => {
     var range = max-min;
     return Math.floor(Math.random()*(range+1) + min);
+}
+
+checkImage = (imageSrc, good, bad) => {
+    var img = new Image();
+    img.src = imageSrc;
+    img.onload = good; 
+    img.onerror = bad;
 }
