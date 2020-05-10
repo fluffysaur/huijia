@@ -20,7 +20,7 @@ $( document ).ready(function() {
         iosocket.emit("reqCards");
 
         submitBtn.addEventListener("click", function(ev){
-            if (catField.value && ideaField.value && descField.value) {
+            if (catField.value && ideaField.value) {
                 var inputURL = urlField.value;
                 if (urlField.value == null || urlField.value == '') inputURL = "NIL";
                 var inputImg = imgField.value;
