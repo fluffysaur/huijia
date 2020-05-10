@@ -11,7 +11,7 @@ const express = require('express')
 , pool = mysql.createPool({
 	host : process.env.MYSQLHOST,
 	user : process.env.MYSQLUSER,
-	password : process.env.MYSQLPASS,
+	password : process.env.MYSQLPASS2,
 	database : process.env.MYSQLDB,
     charset : 'utf8mb4',
     port : process.env.MYSQLPORT
